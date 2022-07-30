@@ -1,0 +1,100 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.electronic-container {
+    background-color: rgba(232, 232, 232, 0.284);
+}
+
+.electronic-start {
+    padding: 1.5rem 0.5rem 0.5rem 4rem;
+}
+
+.electronic-start h2 {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: rgb(72, 68, 68);
+}
+
+.electronic-detail-img {
+    display: grid;
+    grid-template-rows: repeat(2, auto);
+    grid-gap: 1.5rem;
+    margin: 0rem 4rem;
+}
+
+.ind-detail-electroic-img {
+    display: flex;
+    flex-direction: row;
+    background-color: white;
+}
+
+.ind-detail-electroic-img img {
+    width: 300px;
+    height: 300px;
+}
+
+.electro-img-detail {
+    background-color: rgba(238, 235, 235, 0.56);
+    width: 1091px;
+    padding: 1rem;
+}
+
+.name-change{
+    text-decoration: none;
+    color: black;
+}
+.name-desc {
+    font-size: 25.9px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    cursor: pointer;
+}
+
+.name-desc:hover{
+    color: rgb(167, 29, 29);
+}
+
+.limited{
+    margin-top: 1rem;
+}
+
+.limited span{
+    width: 50px;
+    background-color: rgb(186, 57, 57);
+    color: white;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    padding: 0.2rem;
+}
+
+.price{
+    color: rgb(201, 56, 56);
+    padding: 1rem 0 0.5rem 0;
+    font-size: 20px;
+    font-family: sans-serif;
+}
+
+.price span{
+    margin-left: 0.5rem;
+    font-size: 16px;
+    color: rgb(47, 46, 46);
+}
+
+.save{
+    margin: 0 0 1rem 0;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.save span{
+    width: 50px;
+    background-color: rgb(100, 218, 67);
+    color: rgb(57, 57, 57);
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    padding: 0.2rem;
+}
+
+.extra-detail{
+    color: rgb(70, 69, 69);
+    font-size: 18px;
+    margin-bottom: 0.4rem;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}

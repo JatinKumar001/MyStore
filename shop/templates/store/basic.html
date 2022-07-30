@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %} {% endblock %}</title>
+    {% load static %}
+    <link rel="shortcut icon" href="{% static 'img/Favicon.png'%}" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="{% static 'css_style/style.css' %}">
+    <!-- <link rel="stylesheet" type="text/css" href="{% static 'css_style/individual-page-style.css' %}"> -->
+    {% block css %} {% endblock %}
+
+</head>
+
+<body>
+    <nav>
+        <div class="navbar">
+            <div class="name-item">
+                <p class="storename">My Store</p>
+                <div class="ulitem">
+                    <ul class="item">
+                        <li><a href="/">Home</a></li>
+                        <li><a href="#">About</a></li>
+                        <li><a href="/contact/">Contact</a></li>
+                        <li><a href="#">Tracker</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="search-cart">
+                <form action="{% url 'search-item' %}" method="post">
+                    {% csrf_token%}
+                    <input type="text" class="itemsearch" placeholder="Search" name="searched">
+                    <button class="btn-search">Search</button>
+                </form>
+
+                {% if user.is_authenticated %}
+                <p class="hcart">Hello,{{fname}}</p>
+                    <!-- <div class="signout-btn"><button type="submit"><a href="/signout">signout</a></button></div> -->
+                {% else %}
+                <a href="/sign">
+                    <p class="hcart ch">Sign In</p>
+                </a>
+                {% endif %}
+                <a href="/checkout">
+                    <p class="hcart ch">Cart(<span class="itemcount" id="cart">0</span>)</p>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    {% block body %} {% endblock %}
+
+    <footer>
+        <div class="foot">
+            <p class="end">MyStore&copy;copyright 2022</p>
+            <p class="query">For any query or doubt <span>:=></span> <a class="qcontact" href="/contact">Contact Us</a></p>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"
+        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+    <script>
+        if (localStorage.getItem("cart") == null) {
+            var cart = {};
+        }
+        else {
+            cart = JSON.parse(localStorage.getItem('cart'));
+            update(cart);
+        }
+
+        function update(cart) {
+            var sum = 0;
+            for (var item in cart) {
+                sum = sum + cart[item][1];
+            }
+            localStorage.setItem('cart', JSON.stringify(cart));
+            document.getElementById('cart').innerHTML = sum;
+        }
+    </script>
+    {% block js %} {% endblock %}
+
+
+</body>
+
+</html>

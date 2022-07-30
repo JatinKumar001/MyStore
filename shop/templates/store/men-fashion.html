@@ -1,0 +1,98 @@
+{% extends 'store/basic.html'%}
+
+{% block title %} Phone Page {% endblock %}
+
+{% block css %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css_style/men-fashion-style.css' %}">
+<link rel="stylesheet" href="{% static 'css_style/phone-style.css' %}">
+<link rel="stylesheet" href="{% static 'css_style/individual-page-style.css' %}">
+
+{% endblock %}
+{% block body %}
+    <section>
+        <div class="men-fashion-container">
+            {% if searched %}
+            <div class="heading">
+                <h2>RESULTS</h2>
+                <p>Price and other details may vary based on product size and colour.</p>
+            </div>
+            {% for prod in allprod %}
+            <div class="men-product-details-img">
+                {% for i in prod %}
+                <div class="ind-detail-prod-img">
+                    <img src="/media/{{i.image}}" id="imagepr{{i.id}}" alt="">
+                    <div class="men-prod-img-detail">
+                        <a href="/individual-page/{{i.id}}" class="name-change"><p class="name" id="namepr{{i.id}}" >{{i.prod_name}}</p></a>
+                        <p class="price" id="pricepr{{i.id}}">₹.{{i.price}} <span>(65% off)</span></p>
+                        <p class="extra-detail">Sale, Extra 20% off</p>
+                        <span id="divpr{{i.id}}" class="divpr">
+                            <button id="pr{{i.id}}" class="addtocart cart">Add to Cart</button>
+                        </span>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% endfor %}
+            {% else %}
+            <div class="heading">
+                <h2>RESULTS - Unable to filter your result try again</h2>
+            </div>
+            {% endif %}
+        </div>
+    </section>
+
+    {% endblock %}
+
+    {% block js %}
+    <script>
+        if (localStorage.getItem("cart") == null) {
+            var cart = {};
+        }
+        else {
+            cart = JSON.parse(localStorage.getItem('cart'));
+            update(cart);
+        }
+    
+        // $('.cart').click(function () {
+        $('.divpr').on('click', 'button.cart', function () {
+            var idstr = this.id.toString();
+            if (cart[idstr] != undefined) {
+                qty = cart[idstr][1] + 1
+            }
+            else {
+                qty = 1;
+                name = document.getElementById('name' + idstr).innerHTML;
+                price = document.getElementById('price' + idstr).innerHTML;
+                image = document.images['image' + idstr].src;
+                cart[idstr] = [name, qty, price, image];
+            }
+            update(cart);
+        });
+    
+        function update(cart) {
+            var sum = 0;
+            for (var item in cart) {
+                sum = sum + cart[item][1];
+                // document.getElementById('div' + item).innerHTML = "<button id='minus" + item + "' class='btn btn-primary minus'>-</button> <span id='val" + item + "''>" + cart[item][1] + "</span> <button id='plus" + item + "' class='btn btn-primary plus'> + </button>";
+            }
+            localStorage.setItem('cart', JSON.stringify(cart));
+            document.getElementById('cart').innerHTML = sum;
+        }
+    
+        // $('.divpr').on("click", "button.minus", function () {
+        //     a = this.id.slice(7,);
+        //     cart['pr' + a][1] = cart['pr' + a][1] - 1;
+        //     cart['pr' + a][1] = Math.max(0, cart['pr' + a][1]);
+            // document.getElementById('valpr' + a).innerHTML = cart['pr' + a][1];
+        //     update(cart);
+        // });
+    
+        // $('.divpr').on("click", "button.plus", function () {
+        //     a = this.id.slice(6,);
+        //     cart['pr' + a][1] = cart['pr' + a][1] + 1;
+        //     document.getElementById('valpr' + a).innerHTML = cart['pr' + a][1];
+        //     update(cart);
+        // });
+    </script>
+{% endblock %}

@@ -1,0 +1,339 @@
+{% extends 'store/basic.html'%}
+
+{% block title %} Home Page {% endblock %}
+
+
+{% block body %}
+{% load static %}
+<section>
+  <div class="container">
+    <!--image slider start-->
+    <div class="slider">
+      <div class="slides">
+        <!--radio buttons start-->
+        <input type="radio" name="radio-btn" id="radio1">
+        <input type="radio" name="radio-btn" id="radio2">
+        <input type="radio" name="radio-btn" id="radio3">
+        <input type="radio" name="radio-btn" id="radio4">
+        <!--radio buttons end-->
+        <!--slide images start-->
+        <div class="slide first">
+          <img src="{% static 'img/display-1.jpg' %}" alt="">
+        </div>
+        <div class="slide">
+          <img src="{% static 'img/display-2.jpg' %}" alt="">
+        </div>
+        <div class="slide">
+          <img src="{% static 'img/display-3.jpg' %}" alt="">
+        </div>
+        <div class="slide">
+          <img src="{% static 'img/display-4.jpg' %}" alt="">
+        </div>
+        <!--slide images end-->
+        <!--automatic navigation start-->
+        <div class="navigation-auto">
+          <div class="auto-btn1"></div>
+          <div class="auto-btn2"></div>
+          <div class="auto-btn3"></div>
+          <div class="auto-btn4"></div>
+        </div>
+        <!--automatic navigation end-->
+      </div>
+      <!--manual navigation start-->
+      <div class="navigation-manual">
+        <label for="radio1" class="manual-btn"></label>
+        <label for="radio2" class="manual-btn"></label>
+        <label for="radio3" class="manual-btn"></label>
+        <label for="radio4" class="manual-btn"></label>
+      </div>
+      <!--manual navigation end-->
+    </div>
+    <!--image slider end-->
+
+    <!-- Item box start -->
+    <div class="itemcontainer">
+      <div class="itembox">
+        <div class="sale">
+          <h2>Up to 70% of | Men style</h2>
+        </div>
+        <div class="saleimg">
+          <div class="imggrid-row-1">
+            <img src="{% static 'img/display-fashion-1.jpg'%}" alt="">
+            <img src="{% static 'img/display-fashion-2.jpg'%}" alt="">
+          </div>
+          <div class="imggrid-row-2">
+            <img src="{% static 'img/display-fashion-3.jpg'%}" alt="">
+            <img src="{% static 'img/display-fashion-4.jpg'%}" alt="">
+          </div>
+        </div>
+        <div class="shopmore same">
+          <a class="expend" href="#">Shop More</a>
+        </div>
+      </div>
+      <div class="itembox">
+        <div class="sale">
+          <h2>Ugrade your home | MyStore Brands</h2>
+        </div>
+        <div class="saleimg">
+          <div class="imggrid-row-1">
+            <img src="{% static 'img/display-item-1.jpg'%}" alt="">
+            <img src="{% static 'img/display-item-2.jpg'%}" alt="">
+          </div>
+          <div class="imggrid-row-2">
+            <img src="{% static 'img/display-item-3.jpg'%}" alt="">
+            <img src="{% static 'img/display-item-4.jpg'%}" alt="">
+          </div>
+        </div>
+        <div class="shopmore">
+          <a class="expend" href="#">Shop More</a>
+        </div>
+      </div>
+      <div class="itembox">
+        <div class="sale">
+          <h2>Up to 70% of | Clearance store</h2>
+        </div>
+        <div class="saleimg">
+          <div class="new">
+            <img src="{% static 'img/display-clearance-item-1.png' %}" class="newimg" alt="">
+          </div>
+        </div>
+        <div class="shopmore">
+          <a class="expend" href="#">Shop More</a>
+        </div>
+      </div>
+      <div class="itembox">
+        <div class="sale">
+          <h2>Sign in for your best experience</h2>
+        </div>
+        <div class="saleimg">
+          <div class="new">
+            {% if user.is_authenticated %}
+            <!-- <button type="submit" class><a href="/signout">signout</a></button> -->
+            <a href="/signout" style="width: 100%; margin:auto;">
+              <button class="sign-up">Sign Out</button>
+            </a>
+            {% else %}
+            <a href="/signin/" style="width: 100%; margin:auto;">
+              <button class="sign-up">Sign in</button>
+            </a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Item box end -->
+
+    <!-- Product slider start -->
+    <div class="productslider">
+      <div class="prodslider">
+        <div class="pdesc">
+          <h2>New Relese in Men Fashion</h2>
+        </div>
+        <div class="imgslider">
+          {% for prod in allprod %}
+          <ul id="text" class="productimg">
+            {% for i in prod %}
+            <li class="individualimg">
+              <span class="prodimg">
+                <img src="/media/{{i.image}}" alt="">
+              </span>
+            </li>
+            {% endfor %}
+          </ul>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    <!-- Product slider end -->
+
+    <div class="itemcontainer-1">
+      <div class="itembox">
+        <div class="sale">
+          <h2>Pay your credit card bills on My store</h2>
+        </div>
+        <div class="saleimg">
+          <div class="new">
+            <img src="{% static 'img/pay-1.jpg' %}" class="newimg" alt="">
+          </div>
+        </div>
+        <div class="shopmore">
+          <a class="expend" href="#">Pay Now</a>
+        </div>
+      </div>
+      <div class="itembox">
+        <div class="sale">
+          <h2>Automotive essentials | Up to 60% off</h2>
+        </div>
+        <div class="saleimg">
+          <div class="imggrid-row-1">
+            <img src="{% static 'img/auto-1.jpg'%}" alt="">
+            <img src="{% static 'img/auto-2.jpg'%}" alt="">
+          </div>
+          <div class="imggrid-row-2">
+            <img src="{% static 'img/auto-3.jpg'%}" alt="">
+            <img src="{% static 'img/auto-4.jpg'%}" alt="">
+          </div>
+        </div>
+        <div class="shopmore same">
+          <a class="expend" href="#">Shop More</a>
+        </div>
+      </div>
+      <div class="itembox">
+        <div class="sale">
+          <h2>Shop by Category</h2>
+        </div>
+        <div class="saleimg">
+          <div class="imggrid-row-1">
+            <img src="{% static 'img/catshop-1.jpg'%}" alt="">
+            <img src="{% static 'img/catshop-2.jpg'%}" alt="">
+          </div>
+          <div class="imggrid-row-2">
+            <img src="{% static 'img/catshop-3.jpg'%}" alt="">
+            <img src="{% static 'img/catshop-4.jpg'%}" alt="">
+          </div>
+        </div>
+        <div class="shopmore">
+          <a class="expend" href="#">Shop More</a>
+        </div>
+      </div>
+      <div class="itembox">
+        <div class="sale">
+          <h2>Top rated, premium quality | store Brands & more</h2>
+        </div>
+        <div class="saleimg">
+          <div class="imggrid-row-1">
+            <img src="{% static 'img/brand-1.jpg'%}" alt="">
+            <img src="{% static 'img/brand-2.jpg'%}" alt="">
+          </div>
+          <div class="imggrid-row-2">
+            <img src="{% static 'img/brand-3.jpg'%}" alt="">
+            <img src="{% static 'img/brand-4.jpg'%}" alt="">
+          </div>
+        </div>
+        <div class="shopmore">
+          <a class="expend" href="#">Shop More</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="itemcontainer-2">
+      <div class="itembox">
+        <div class="sale">
+          <h2>Save 10% with less effort</h2>
+        </div>
+        <div class="saleimg">
+          <div class="new">
+            <img src="{% static 'img/effort-1.jpg' %}" class="newimg" alt="">
+          </div>
+        </div>
+        <div class="shopmore">
+          <a class="expend" href="#">Subscribe & Save</a>
+        </div>
+      </div>
+      <div class="itembox">
+        <div class="sale">
+          <h2>Electronics devices for home office</h2>
+        </div>
+        <div class="saleimg">
+          <div class="imggrid-row-1">
+            <img src="{% static 'img/home-device-1.jpg'%}" alt="">
+            <img src="{% static 'img/home-device-2.jpg'%}" alt="">
+          </div>
+          <div class="imggrid-row-2">
+            <img src="{% static 'img/home-device-3.jpg'%}" alt="">
+            <img src="{% static 'img/home-device-4.jpg'%}" alt="">
+          </div>
+        </div>
+        <div class="shopmore same">
+          <a class="expend" href="#">Shop More</a>
+        </div>
+      </div>
+      <div class="itembox">
+        <div class="sale">
+          <h2>Cookware & dining</h2>
+        </div>
+        <div class="saleimg">
+          <div class="imggrid-row-1">
+            <img src="{% static 'img/cooking-1.jpg'%}" alt="">
+            <img src="{% static 'img/cooking-2.jpg'%}" alt="">
+          </div>
+          <div class="imggrid-row-2">
+            <img src="{% static 'img/cooking-3.jpg'%}" alt="">
+            <img src="{% static 'img/cooking-4.jpg'%}" alt="">
+          </div>
+        </div>
+        <div class="shopmore">
+          <a class="expend" href="#">Shop More</a>
+        </div>
+      </div>
+      <div class="itembox">
+        <div class="sale">
+          <h2>Up to 60% off | Professional tools & more</h2>
+        </div>
+        <div class="saleimg">
+          <div class="new">
+            <img src="{% static 'img/tool-1.jpg' %}" class="newimg" alt="">
+          </div>
+        </div>
+        <div class="shopmore">
+          <a class="expend" href="#">Shop More</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="productslider-1">
+      <div class="prodslider">
+        <div class="pdesc">
+          <h2>Up to 40% off | Recently Launched</h2>
+        </div>
+        <div class="imgslider">
+          {% for prod in phprod %}
+          <ul id="text" class="productimg">
+            {% for i in prod %}
+            <li class="individualimg">
+              <span class="prodimg">
+                <img src="/media/{{i.image}}" alt="">
+              </span>
+            </li>
+            {% endfor %}
+          </ul>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
+
+{% block js %}
+<script type="text/javascript">
+  var counter = 1;
+  setInterval(function () {
+    document.getElementById('radio' + counter).checked = true;
+    counter++;
+    if (counter > 4) {
+      counter = 1;
+    }
+  }, 5000);
+
+  if (localStorage.getItem("cart") == null) {
+    var cart = {};
+  }
+  else {
+    cart = JSON.parse(localStorage.getItem('cart'));
+    update(cart);
+  }
+
+  function update(cart) {
+    var sum = 0;
+    for (var item in cart) {
+      sum = sum + cart[item][1];
+    }
+    localStorage.setItem('cart', JSON.stringify(cart));
+    document.getElementById('cart').innerHTML = sum;
+  }
+
+
+</script>
+{% endblock %}
